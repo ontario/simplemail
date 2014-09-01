@@ -1,0 +1,15 @@
+<?php $classes        = array('info'    => 'notice', 'error'   => 'error', 'success' => 'ok', 'default' => 'notice'); ?>
+<?php $flashNamespace = array('info', 'error', 'success', 'default'); ?>
+
+<?php foreach ($flashNamespace as $namespace): ?>
+    <?php $messages = $this->FlashMessenger()->getPluginFlashMessenger()->getCurrentMessagesFromNamespace($namespace); ?>
+    <?php if (count($messages)): ?>
+        <div class="<?php echo sprintf('alert-%s', $namespace); ?>">
+                <?php foreach ($messages as $message): ?>
+                        <div class="close" data-dismiss="alert"><?php echo $this->Translate('Close'); ?> </div>
+                        <?php echo $this->Translate($message); ?>
+                <?php endforeach; ?>
+        </div>
+        <?php $this->FlashMessenger()->clearCurrentMessagesFromNamespace($namespace); ?>
+    <?php endif; ?>
+<?php endforeach; ?>

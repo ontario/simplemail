@@ -20,7 +20,23 @@ class IndexController extends AbstractActionController
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-
+            $flash = $this->flashMessenger();
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $d = $form->getData();
+                /**
+                 * @var \Application\Service\MailService $i
+                 */
+                $i = $this->getServiceLocator()->get('Application\Service\MailService');
+                try {
+                    $i->send($d);
+                    $flash->addSuccessMessage('Send success');
+                } catch (\RuntimeException $e) {
+                    $flash->addErrorMessage($e->getMessage());
+                }
+            } else {
+                $flash->addErrorMessage($form->getMessages());
+            }
         }
         return array('form' => $form);
     }

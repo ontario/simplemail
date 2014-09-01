@@ -23,6 +23,7 @@ class MailForm extends Form {
         $this->add(array(
             'name' => 'from',
             'type' => 'Email',
+            'required' => true,
             'options' => array(
                 'label' => 'From:',
             ),
@@ -77,7 +78,5 @@ class MailForm extends Form {
                 'class' => 'btn btn-default'
             )
         ));
-
-        //$this->setDefaults(array('from' => 'smtp@smtp.cera-gmc.org'));
     }
 }

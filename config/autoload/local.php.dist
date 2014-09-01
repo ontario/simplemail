@@ -12,4 +12,13 @@
  */
 
 return array(
+    'mail_setting' => array(
+        'host' => '',
+        'connection_class' => 'login',
+        'connection_config' => array (
+            'ssl' => 'tls',
+            'username' => '',
+            'password' => '',
+            'port' => '587',
+         )),
 );
