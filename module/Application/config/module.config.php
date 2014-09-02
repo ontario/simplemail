@@ -8,6 +8,22 @@
  */
 
 return array(
+    //Console router
+    'console'              => array(
+        'router' => array(
+            'routes' => array(
+                'send' => array(
+                    'options' => array(
+                        'route'    => 'send <recipient> <subject> <message>',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\ConsoleController',
+                            'action'     => 'send'
+                        ),
+                    ),
+                ),
+            )
+        )
+    ),
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -76,7 +92,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\ConsoleController' => 'Application\Controller\ConsoleController',
         ),
     ),
     'view_manager' => array(
@@ -93,13 +110,6 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
-        ),
-    ),
-    // Placeholder for console routes
-    'console' => array(
-        'router' => array(
-            'routes' => array(
-            ),
         ),
     ),
 );
