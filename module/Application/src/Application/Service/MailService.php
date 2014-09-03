@@ -59,6 +59,8 @@ class MailService implements  FactoryInterface {
             $message->setBody($body);
             $transport->setOptions($op);
             $transport->send($message);
+        }else{
+            throw new \RuntimeException('Config for MailService is absent, need try to create local.php file and fill corresponding fields');
         }
     }
 } 

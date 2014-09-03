@@ -11,6 +11,7 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Console\Adapter\AdapterInterface as Console;
 
 class Module
 {
@@ -34,6 +35,13 @@ class Module
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
+        );
+    }
+    public function getConsoleUsage(Console $console)
+    {
+        return array(
+            'Usage:',
+            'send' => '<recipient> <subject> <message>',
         );
     }
 }
