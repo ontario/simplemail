@@ -37,7 +37,7 @@ class ConsoleController extends AbstractActionController
                 ));
                 echo "Successfully sent\n";
             } catch (\RuntimeException $e) {
-                echo $e->getMessage();
+                echo sprintf('From: %s\nTo: %s\nError: %s\n',$sender,$r,$e->getMessage());
             }
         }
     }
