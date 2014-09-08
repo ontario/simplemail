@@ -14,7 +14,7 @@ return array(
             'routes' => array(
                 'send' => array(
                     'options' => array(
-                        'route'    => 'send <recipient> <subject> <message>',
+                        'route'    => 'send <sender> <recipient> <subject> <message>',
                         'defaults' => array(
                             'controller' => 'Application\Controller\ConsoleController',
                             'action'     => 'send'

@@ -41,7 +41,7 @@ class Module
     {
         return array(
             'Usage:',
-            'send' => '<recipient> <subject> <message>',
+            'send' => '<sender> <recipients> <subject> <message>',
         );
     }
 }

@@ -20,20 +20,25 @@ class ConsoleController extends AbstractActionController
             throw new \RuntimeException('You can only use this action from a console!');
         }
 
-        $recipient = $request->getParam('recipient');
-        $subject   = $request->getParam('subject');
-        $message   = $request->getParam('message');
+        $sender     = $request->getParam('sender');
+        $recipients = $request->getParam('recipients');
+        $subject    = $request->getParam('subject');
+        $message    = $request->getParam('message');
 
         $mailService = $this->getServiceLocator()->get('Application\Service\MailService');
-        try {
-            $mailService->send(array(
-                'to'      => $recipient,
-                'subject' => $subject,
-                'message' => $message
-            ));
-            echo "Successfully sent\n";
-        } catch (\RuntimeException $e) {
-            echo $e->getMessage();
+        $recipients = explode(',',$recipients);
+        foreach ($recipients as $r) {
+            try {
+                $mailService->send(array(
+                    'from'    => $sender,
+                    'to'      => $r,
+                    'subject' => $subject,
+                    'message' => $message
+                ));
+                echo "Successfully sent\n";
+            } catch (\RuntimeException $e) {
+                echo $e->getMessage();
+            }
         }
     }
 
