@@ -31,13 +31,17 @@ class ConsoleController extends AbstractActionController
             try {
                 $mailService->send(array(
                     'from'    => $sender,
-                    'to'      => $r,
+                    'to'      => trim($r),
                     'subject' => $subject,
                     'message' => $message
                 ));
                 echo "Successfully sent\n";
             } catch (\RuntimeException $e) {
-                echo sprintf('From: %s\nTo: %s\nError: %s\n',$sender,$r,$e->getMessage());
+                echo sprintf('
+From: %s
+To: %s
+Error: %s
+', $sender, trim($r), $e->getMessage());
             }
         }
     }
