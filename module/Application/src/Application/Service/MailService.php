@@ -37,6 +37,10 @@ class MailService implements  FactoryInterface {
             foreach ($options as $key => $value) {
                 $this->$key = $value;
             }
+            
+            if (!isset($this->from)) {
+                $this->from = $config['mail_setting']['connection_config']['username'];
+            }
 
             $message = new Message();
             $message->addTo($this->to)
